@@ -10,8 +10,9 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+
   case KC_MAKE:
-    if (!record->event.pressed) {
+    if (record->event.pressed) {
       SEND_STRING("make " QMK_KEYBOARD ":" QMK_KEYMAP
 #if  (defined(BOOTLOADER_DFU) || defined(BOOTLOADER_LUFA_DFU) || defined(BOOTLOADER_QMK_DFU))
        ":dfu "
@@ -22,8 +23,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
         SS_TAP(X_ENTER));
     }
+
     return false;
     break;
+
+  case KC_CAD:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LCTRL(SS_LALT(SS_TAP(X_DELETE))));
+    }
+
+    return false;
+    break;
+#ifdef UNICODE_ENABLED
+  case SHRUG:
+    if (record->event.pressed) {
+      SEND_STRING("*shrug*");
+    }
+
+    return false;
+    break;
+
+  case TABLE_FLIP:
+    if (record->event.pressed) {
+      SEND_STRING("*flips table*");
+    }
+
+    return false;
+    break;
+#endif
   }
+
   return process_record_keymap(keycode, record);
 }
