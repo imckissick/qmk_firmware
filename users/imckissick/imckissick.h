@@ -4,9 +4,11 @@
 
 #define _______   KC_TRNS
 
+#define KC_CAD    LCTL(LALT(KC_DEL))
+#define KC_DITTO  LALT(KC_A)
+
 enum userspace_keycodes {
   KC_MAKE = SAFE_RANGE,
-  KC_CAD,
 #ifdef UNICODE_ENABLE
   SHRUG,
   TABLE_FLIP,

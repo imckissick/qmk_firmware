@@ -27,13 +27,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return false;
     break;
 
-  case KC_CAD:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LCTRL(SS_LALT(SS_TAP(X_DELETE))));
-    }
-
-    return false;
-    break;
 #ifdef UNICODE_ENABLED
   case SHRUG:
     if (record->event.pressed) {
